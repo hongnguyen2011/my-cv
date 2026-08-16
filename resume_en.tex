@@ -1,0 +1,160 @@
+\documentclass[a4paper,9.5pt]{article}
+
+% --- Packages & Engine Compatibility ---
+\usepackage{iftex}
+
+\ifPDFTeX
+  \usepackage[utf8]{inputenc}
+  \usepackage[T1]{fontenc}
+  \usepackage{lmodern}
+\else
+  \usepackage{fontspec}
+  \setmainfont{Times New Roman}[
+    BoldFont = * Bold,
+    ItalicFont = * Italic,
+    BoldItalicFont = * Bold Italic
+  ]
+\fi
+
+\usepackage[left=1.2cm,right=1.2cm,top=0.85cm,bottom=0.85cm]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{tikz}
+
+% --- Color Palette ---
+\definecolor{primary}{HTML}{0F4C81}    % Classic Navy Blue
+\definecolor{secondary}{HTML}{1A73E8}  % Accent Blue
+\definecolor{textdark}{HTML}{1F2937}   % Deep Charcoal
+\definecolor{textgray}{HTML}{4B5563}   % Slate Gray
+\definecolor{linecolor}{HTML}{CBD5E1}  % Light Gray border
+
+% --- Hyperlinks Setup ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=secondary,
+    urlcolor=secondary,
+    pdfauthor={Nguyen Hong Nguyen},
+    pdftitle={Resume - Nguyen Hong Nguyen - Fullstack Developer}
+}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlist[itemize]{leftmargin=1.1em, itemsep=0.8pt, topsep=1pt, parsep=0pt}
+
+% --- Section Styling ---
+\newcommand{\sectionicon}{\textcolor{primary}{\faChevronCircleRight}\hspace{0.35em}}
+
+\titleformat{\section}
+  {\color{primary}\normalsize\bfseries}
+  {}
+  {0em}
+  {\sectionicon\MakeUppercase}[\vspace{-0.6em}\color{linecolor}\rule{\textwidth}{0.8pt}]
+
+\titlespacing*{\section}{0pt}{5pt}{2.5pt}
+
+\begin{document}
+\color{textdark}
+
+% ==================== HEADER (INFO + AVATAR) ====================
+\begin{minipage}[c]{0.78\textwidth}
+    {\LARGE \textbf{\textcolor{primary}{NGUYEN HONG NGUYEN}}}\\[2pt]
+    {\large \textbf{\textcolor{secondary}{Fullstack Developer}}}\\[4pt]
+    
+    \small
+    \begin{tabular}{@{}ll@{}}
+        \faIcon{phone} \ \textbf{(+84) 962 587 054} & \faIcon{envelope} \ \href{mailto:nguyenhongn2011@gmail.com}{nguyenhongn2011@gmail.com} \\[2pt]
+        \faIcon{linkedin} \ \href{https://www.linkedin.com/in/hnguyen2011/}{linkedin.com/in/hnguyen2011} & \faIcon{github} \ \href{https://github.com/hongnguyen2011}{github.com/hongnguyen2011} \\[2pt]
+        \faIcon{birthday-cake} \ 20/11/2003 & \faIcon{map-marker-alt} \ Dong Da, Hanoi, Vietnam
+    \end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.19\textwidth}
+    \flushright
+    \begin{tikzpicture}
+        \node[inner sep=1pt, draw=linecolor, line width=0.8pt, rounded corners=1.5pt] {
+            \includegraphics[width=2.4cm,height=3.6cm,keepaspectratio]{anh-chan-dung.jpg}
+        };
+    \end{tikzpicture}
+\end{minipage}
+
+\vspace{0.08cm}
+
+% ==================== WORK EXPERIENCE ====================
+\section{Work Experience}
+
+\textbf{\textcolor{primary}{Tan Dan Informatics Joint Stock Company}} \hfill \textcolor{textgray}{\textbf{07/2024 -- Present}}\\
+\textit{Fullstack Developer} \hfill \textit{Hanoi, Vietnam}
+\begin{itemize}
+    \item Developed and maintained high-performance RESTful APIs with \textbf{ASP.NET Core} and admin portals with \textbf{ReactJS}, ensuring system stability and high availability.
+    \item Designed and optimized multi-database architectures on \textbf{PostgreSQL, MSSQL, MariaDB}, maximizing query throughput and data reliability.
+    \item Leveraged AI development tools (\textbf{Claude, Gemini, ChatGPT, Cursor}) to streamline engineering workflows, accelerate sprint delivery, and maintain clean code standards.
+\end{itemize}
+
+% ==================== KEY PROJECTS ====================
+\section{Key Projects}
+
+% --- Project 1 ---
+\textbf{\textcolor{primary}{Public Opinion Polling \& Social Survey System}} \hfill \textcolor{textgray}{\textbf{05/2026 -- Present}}\\
+\textit{Role:} Backend Developer, Frontend Developer \hfill \textit{Team size:} 5\\
+\textit{Tech Stack:} .NET 8, ReactJS, Clean Architecture, EF Core, MariaDB, MinIO, Hangfire, Redis, Elasticsearch, K8s, Git
+\begin{itemize}
+    \item Implemented high-throughput submission flows using \textbf{Redis} to prevent database bottlenecks during peak spikes with millions of submissions.
+    \item Optimized database schema design, integrating \textbf{Hangfire background jobs} and \textbf{Redis caching} for complex statistical reports, maintaining response times \textbf{$<$ 2s}.
+    \item Engineered an \textbf{export streaming module} capable of streaming millions of records to \textbf{CSV} and \textbf{SPSS (.sav)} with a stable memory footprint of only \textbf{$\sim$20MB RAM}, utilizing custom SPSS binary writer and Hangfire background processing.
+\end{itemize}
+
+\vspace{0.06cm}
+
+% --- Project 2 ---
+\textbf{\textcolor{primary}{National Election Council Portal System}} \hfill \textcolor{textgray}{\textbf{06/2025 -- 03/2026}}\\
+\textit{Role:} Backend Developer, Frontend Developer \hfill \textit{Team size:} 5\\
+\textit{Tech Stack:} .NET 8, ReactJS, Clean Architecture, EF Core, PostgreSQL, MinIO, Hangfire, JWT, Serilog, Redis, IIS, Git
+\begin{itemize}
+    \item Architected RESTful APIs with \textbf{CQRS pattern} and implemented decoupled business logic following \textbf{Clean Architecture}.
+    \item Optimized cross-system data synchronization: slashed per-record processing time down to \textbf{20ms (80\% reduction)} across \textbf{600,000 records}, with end-to-end transaction logging.
+    \item Accelerated database queries and portal page loading via \textbf{Redis caching}, achieving response times \textbf{$<$ 1.6s}.
+    \item Implemented multi-tier \textbf{JWT Authentication} \& role-based authorization for fine-grained access control.
+    \item Audited and mitigated standard web security vulnerabilities (\textbf{OWASP Top 10}) including SQL Injection, XSS, and CSRF.
+    \item Leveraged AI workflows to automate architectural-compliant CRUD API scaffolding and accelerate Figma-to-ReactJS conversion.
+\end{itemize}
+
+\vspace{0.06cm}
+
+% --- Project 3 ---
+\textbf{\textcolor{primary}{State Audit Portal \& Media Publishing Platform}} \hfill \textcolor{textgray}{\textbf{07/2025 -- 12/2025}}\\
+\textit{Role:} Backend Developer, Frontend Developer \hfill \textit{Team size:} 5\\
+\textit{Tech Stack:} .NET 8, ReactJS, Clean Architecture, EF Core, MSSQL, MinIO, Hangfire, JWT, Serilog, Redis, IIS, Git
+\begin{itemize}
+    \item Utilized \textbf{Hangfire} for background job orchestration: automated content publishing, multi-channel alerts, and asynchronous image rendering.
+    \item Optimized news article caching and feed queries using \textbf{Redis}, keeping response latency under \textbf{$<$ 1.6s}.
+    \item Integrated \textbf{Single Sign-On (SSO)} and \textbf{JWT Authentication} across the public portal and CMS administrative portal.
+    \item Customized rich-text editing workflows using \textbf{CKEditor}; applied AI tooling to accelerate CMS frontend and backend feature delivery.
+\end{itemize}
+
+% ==================== TECHNICAL SKILLS ====================
+\section{Technical Skills}
+
+\begin{itemize}
+    \item \textbf{Languages \& Databases:} C\# (.NET 8), TypeScript, JavaScript, Python, PostgreSQL, MSSQL, MariaDB, Redis, CSS, HTML.
+    \item \textbf{Frameworks \& Tools:} ReactJS, ASP.NET Core, EF Core, Clean Architecture, CQRS, MinIO, Elasticsearch, Hangfire, Docker, K8s, Git.
+    \item \textbf{AI Workflows \& Engineering:} Proficient in AI coding tools (Claude, Cursor, ChatGPT, Gemini, Codex); hands-on experience in: \textit{Agent Teams, Rules, Skills, MCP (Model Context Protocol), Meta-prompting}.
+    \item \textbf{Soft Skills:} Team collaboration, independent problem solving, system analysis, high adaptability under pressure.
+    \item \textbf{Foreign Languages:} Professional technical English reading/writing, basic conversational English (\textbf{VNU Test B2} -- 02/2025).
+\end{itemize}
+
+% ==================== EDUCATION & HONORS ====================
+\section{Education \& Honors}
+
+\begin{tabularx}{\textwidth}{@{}X r@{}}
+    \textbf{\textcolor{primary}{VNU University of Science (HUS) -- Vietnam National University, Hanoi}} & \textcolor{textgray}{\textbf{09/2021 -- 07/2025}} \\
+    \textit{Bachelor of Science in Computer and Information Science (Member of Hamic Math \& Informatics Club)} & \\
+    \textbf{Third Prize} -- \textit{Wcontest 2022 (Web for Education)} Programming Contest -- VNU University of Science & \textcolor{textgray}{\textbf{11/2022}} \\
+    \textbf{Consolation Prize} -- \textit{National Student Informatics Olympiad} & \textcolor{textgray}{\textbf{03/2022}}
+\end{tabularx}
+
+\end{document}
