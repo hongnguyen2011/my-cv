@@ -1,0 +1,13 @@
+# LaTeX intermediate files
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.xdv
+*.bbl
+*.blg
+
+# OS files
+.DS_Store
