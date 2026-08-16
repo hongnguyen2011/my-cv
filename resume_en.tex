@@ -16,7 +16,7 @@
   ]
 \fi
 
-\usepackage[left=1.2cm,right=1.2cm,top=0.85cm,bottom=0.85cm]{geometry}
+\usepackage[left=1.2cm,right=1.2cm,top=0.75cm,bottom=0.75cm]{geometry}
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{hyperref}
@@ -44,7 +44,7 @@
 
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
-\setlist[itemize]{leftmargin=1.1em, itemsep=0.8pt, topsep=1pt, parsep=0pt}
+\setlist[itemize]{leftmargin=1.1em, itemsep=0.5pt, topsep=0.5pt, parsep=0pt}
 
 % --- Section Styling ---
 \newcommand{\sectionicon}{\textcolor{primary}{\faChevronCircleRight}\hspace{0.35em}}
@@ -55,7 +55,7 @@
   {0em}
   {\sectionicon\MakeUppercase}[\vspace{-0.6em}\color{linecolor}\rule{\textwidth}{0.8pt}]
 
-\titlespacing*{\section}{0pt}{5pt}{2.5pt}
+\titlespacing*{\section}{0pt}{4pt}{2pt}
 
 \begin{document}
 \color{textdark}
@@ -82,7 +82,7 @@
     \end{tikzpicture}
 \end{minipage}
 
-\vspace{0.08cm}
+\vspace{0.06cm}
 
 % ==================== WORK EXPERIENCE ====================
 \section{Work Experience}
@@ -108,7 +108,7 @@
     \item Engineered an \textbf{export streaming module} capable of streaming millions of records to \textbf{CSV} and \textbf{SPSS (.sav)} with a stable memory footprint of only \textbf{$\sim$20MB RAM}, utilizing custom SPSS binary writer and Hangfire background processing.
 \end{itemize}
 
-\vspace{0.06cm}
+\vspace{0.05cm}
 
 % --- Project 2 ---
 \textbf{\textcolor{primary}{National Election Council Portal System}} \hfill \textcolor{textgray}{\textbf{06/2025 -- 03/2026}}\\
@@ -120,10 +120,10 @@
     \item Accelerated database queries and portal page loading via \textbf{Redis caching}, achieving response times \textbf{$<$ 1.6s}.
     \item Implemented multi-tier \textbf{JWT Authentication} \& role-based authorization for fine-grained access control.
     \item Audited and mitigated standard web security vulnerabilities (\textbf{OWASP Top 10}) including SQL Injection, XSS, and CSRF.
-    \item Leveraged AI workflows to automate architectural-compliant CRUD API scaffolding and accelerate Figma-to-ReactJS conversion.
+    \item Leveraged AI workflows to automate architecturally compliant CRUD API scaffolding and accelerate Figma-to-ReactJS conversion.
 \end{itemize}
 
-\vspace{0.06cm}
+\vspace{0.05cm}
 
 % --- Project 3 ---
 \textbf{\textcolor{primary}{State Audit Portal \& Media Publishing Platform}} \hfill \textcolor{textgray}{\textbf{07/2025 -- 12/2025}}\\
@@ -131,7 +131,7 @@
 \textit{Tech Stack:} .NET 8, ReactJS, Clean Architecture, EF Core, MSSQL, MinIO, Hangfire, JWT, Serilog, Redis, IIS, Git
 \begin{itemize}
     \item Utilized \textbf{Hangfire} for background job orchestration: automated content publishing, multi-channel alerts, and asynchronous image rendering.
-    \item Optimized news article caching and feed queries using \textbf{Redis}, keeping response latency under \textbf{$<$ 1.6s}.
+    \item Optimized news article caching and feed queries using \textbf{Redis}, maintaining response times \textbf{$<$ 1.6s}.
     \item Integrated \textbf{Single Sign-On (SSO)} and \textbf{JWT Authentication} across the public portal and CMS administrative portal.
     \item Customized rich-text editing workflows using \textbf{CKEditor}; applied AI tooling to accelerate CMS frontend and backend feature delivery.
 \end{itemize}
