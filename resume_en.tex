@@ -1,160 +1,164 @@
 \documentclass[a4paper,9.5pt]{article}
 
-% --- Packages & Engine Compatibility ---
+% --- Engine & Font Compatibility (ATS-Safe Unicode Mapping & No Ligatures) ---
 \usepackage{iftex}
 
 \ifPDFTeX
+  \input{glyphtounicode}
+  \pdfgentounicode=1
   \usepackage[utf8]{inputenc}
   \usepackage[T1]{fontenc}
-  \usepackage{lmodern}
+  \usepackage{tgtermes}
+  \usepackage{microtype}
+  \DisableLigatures{encoding = *, family = *}
 \else
   \usepackage{fontspec}
-  \setmainfont{Times New Roman}[
-    BoldFont = * Bold,
-    ItalicFont = * Italic,
-    BoldItalicFont = * Bold Italic
+  \setmainfont{texgyretermes}[
+    Extension = .otf,
+    UprightFont = *-regular,
+    BoldFont = *-bold,
+    ItalicFont = *-italic,
+    BoldItalicFont = *-bolditalic,
+    Ligatures = {TeX, NoCommon}
   ]
 \fi
 
-\usepackage[left=1.2cm,right=1.2cm,top=0.75cm,bottom=0.75cm]{geometry}
-\usepackage{graphicx}
+% --- Page Geometry & Layout ---
+\usepackage[left=1.15cm,right=1.15cm,top=0.65cm,bottom=0.65cm]{geometry}
+\usepackage[none]{hyphenat}
 \usepackage{xcolor}
-\usepackage{hyperref}
-\usepackage{fontawesome5}
 \usepackage{enumitem}
-\usepackage{tabularx}
 \usepackage{titlesec}
-\usepackage{tikz}
+\usepackage{hyperref}
 
-% --- Color Palette ---
-\definecolor{primary}{HTML}{0F4C81}    % Classic Navy Blue
-\definecolor{secondary}{HTML}{1A73E8}  % Accent Blue
-\definecolor{textdark}{HTML}{1F2937}   % Deep Charcoal
-\definecolor{textgray}{HTML}{4B5563}   % Slate Gray
-\definecolor{linecolor}{HTML}{CBD5E1}  % Light Gray border
+% --- Subtle High-Contrast Palette ---
+\definecolor{primary}{HTML}{0F4C81}
+\definecolor{textdark}{HTML}{111827}
+\definecolor{linecolor}{HTML}{94A3B8}
 
-% --- Hyperlinks Setup ---
 \hypersetup{
     colorlinks=true,
-    linkcolor=secondary,
-    urlcolor=secondary,
+    linkcolor=primary,
+    urlcolor=primary,
     pdfauthor={Nguyen Hong Nguyen},
-    pdftitle={Resume - Nguyen Hong Nguyen - Fullstack Developer}
+    pdftitle={Nguyen Hong Nguyen - Fullstack Developer Resume},
+    pdfsubject={Fullstack Developer (.NET, ReactJS)},
+    pdfkeywords={Fullstack Developer, C\#, .NET 8, ASP.NET Core, ReactJS, TypeScript, PostgreSQL, MSSQL, MariaDB, Redis, Elasticsearch, Docker, Kubernetes}
 }
 
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
-\setlist[itemize]{leftmargin=1.1em, itemsep=0.5pt, topsep=0.5pt, parsep=0pt}
+\setlength{\parskip}{0pt}
+\sloppy
 
-% --- Section Styling ---
-\newcommand{\sectionicon}{\textcolor{primary}{\faChevronCircleRight}\hspace{0.35em}}
+\setlist[itemize]{
+    leftmargin=1.2em,
+    label=\textbullet,
+    itemsep=0.6pt,
+    topsep=1pt,
+    parsep=0pt
+}
 
+% --- ATS-Friendly Section Styling (No Icons, No Negative Overlap) ---
 \titleformat{\section}
   {\color{primary}\normalsize\bfseries}
   {}
   {0em}
-  {\sectionicon\MakeUppercase}[\vspace{-0.6em}\color{linecolor}\rule{\textwidth}{0.8pt}]
+  {\MakeUppercase}[\vspace{1pt}{\color{linecolor}\titlerule[0.6pt]}]
 
-\titlespacing*{\section}{0pt}{4pt}{2pt}
+\titlespacing*{\section}{0pt}{4pt}{2.5pt}
+
+% --- Single-Column Entry Heading Macro ---
+\newcommand{\entryheading}[2]{%
+  \noindent{\color{primary}\textbf{#1}}\hfill\textbf{#2}\par\nopagebreak\vspace{0.5pt}%
+}
 
 \begin{document}
+\fontsize{9.4pt}{11.2pt}\selectfont
 \color{textdark}
 
-% ==================== HEADER (INFO + AVATAR) ====================
-\begin{minipage}[c]{0.78\textwidth}
-    {\LARGE \textbf{\textcolor{primary}{NGUYEN HONG NGUYEN}}}\\[2pt]
-    {\large \textbf{\textcolor{secondary}{Fullstack Developer}}}\\[4pt]
-    
+% ==================== HEADER ====================
+\begin{center}
+    {\LARGE\bfseries\color{primary} NGUYEN HONG NGUYEN}\\[1pt]
+    {\large\bfseries Fullstack Developer}\\[2pt]
     \small
-    \begin{tabular}{@{}ll@{}}
-        \faIcon{phone} \ \textbf{(+84) 962 587 054} & \faIcon{envelope} \ \href{mailto:nguyenhongn2011@gmail.com}{nguyenhongn2011@gmail.com} \\[2pt]
-        \faIcon{linkedin} \ \href{https://www.linkedin.com/in/hnguyen2011/}{linkedin.com/in/hnguyen2011} & \faIcon{github} \ \href{https://github.com/hongnguyen2011}{github.com/hongnguyen2011} \\[2pt]
-        \faIcon{birthday-cake} \ 20/11/2003 & \faIcon{map-marker-alt} \ Dong Da, Hanoi, Vietnam
-    \end{tabular}
-\end{minipage}
-\hfill
-\begin{minipage}[c]{0.19\textwidth}
-    \flushright
-    \begin{tikzpicture}
-        \node[inner sep=1pt, draw=linecolor, line width=0.8pt, rounded corners=1.5pt] {
-            \includegraphics[width=2.4cm,height=3.6cm,keepaspectratio]{anh-chan-dung.jpg}
-        };
-    \end{tikzpicture}
-\end{minipage}
+    Dong Da, Hanoi, Vietnam \textbar\ (+84) 962 587 054 \textbar\ \href{mailto:nguyenhongn2011@gmail.com}{nguyenhongn2011@gmail.com} \textbar\ \href{https://www.linkedin.com/in/hnguyen2011/}{linkedin.com/in/hnguyen2011} \textbar\ \href{https://github.com/hongnguyen2011}{github.com/hongnguyen2011}
+\end{center}
 
-\vspace{0.06cm}
+\vspace{-6pt}
+
+% ==================== PROFESSIONAL SUMMARY ====================
+\section{Professional Summary}
+Fullstack Developer experienced in building high-concurrency enterprise and government web platforms using \textbf{C\# (.NET 8 / ASP.NET Core)} and \textbf{ReactJS / TypeScript}. Strong background in \textbf{Clean Architecture}, \textbf{CQRS}, relational/NoSQL database optimization (\textbf{PostgreSQL, MSSQL, MariaDB, Redis, Elasticsearch}), background job processing (\textbf{Hangfire}), and AI-assisted software engineering.
 
 % ==================== WORK EXPERIENCE ====================
 \section{Work Experience}
 
-\textbf{\textcolor{primary}{Tan Dan Informatics Joint Stock Company}} \hfill \textcolor{textgray}{\textbf{07/2024 -- Present}}\\
-\textit{Fullstack Developer} \hfill \textit{Hanoi, Vietnam}
+\entryheading{Tan Dan Informatics Joint Stock Company}{07/2024 -- Present}
+\noindent\textit{Fullstack Developer \textbar\ Hanoi, Vietnam}\par\nopagebreak
 \begin{itemize}
-    \item Developed and maintained high-performance RESTful APIs with \textbf{ASP.NET Core} and admin portals with \textbf{ReactJS}, ensuring system stability and high availability.
-    \item Designed and optimized multi-database architectures on \textbf{PostgreSQL, MSSQL, MariaDB}, maximizing query throughput and data reliability.
-    \item Leveraged AI development tools (\textbf{Claude, Gemini, ChatGPT, Cursor}) to streamline engineering workflows, accelerate sprint delivery, and maintain clean code standards.
+    \item Developed and maintained high-performance RESTful APIs with \textbf{ASP.NET Core} and administrative web portals with \textbf{ReactJS}, ensuring system stability and high availability across production environments.
+    \item Designed and optimized multi-database schemas and queries across \textbf{PostgreSQL}, \textbf{Microsoft SQL Server (MSSQL)}, and \textbf{MariaDB}, improving query throughput and data reliability.
+    \item Applied AI-assisted development workflows (\textbf{Claude, Cursor, Gemini, ChatGPT}) to accelerate feature delivery, automate boilerplate scaffolding, and uphold clean code standards.
 \end{itemize}
 
-% ==================== KEY PROJECTS ====================
-\section{Key Projects}
+% ==================== PROJECTS ====================
+\section{Projects}
 
-% --- Project 1 ---
-\textbf{\textcolor{primary}{Public Opinion Polling \& Social Survey System}} \hfill \textcolor{textgray}{\textbf{05/2026 -- Present}}\\
-\textit{Role:} Backend Developer, Frontend Developer \hfill \textit{Team size:} 5\\
-\textit{Tech Stack:} .NET 8, ReactJS, Clean Architecture, EF Core, MariaDB, MinIO, Hangfire, Redis, Elasticsearch, CI/CD, K8s, Git
+\entryheading{Public Opinion Polling \& Social Survey System}{05/2026 -- Present}
+\noindent\textit{Role:} Fullstack Developer (Backend \& Frontend) \textbar\ \textit{Team Size:} 5\par\nopagebreak
+\noindent\textit{Tech Stack:} .NET 8, ASP.NET Core, ReactJS, Clean Architecture, EF Core, MariaDB, Redis, Elasticsearch, Hangfire, MinIO, CI/CD, Kubernetes (K8s), Git\par\nopagebreak
 \begin{itemize}
-    \item Implemented high-throughput submission flows using \textbf{Redis} to prevent database bottlenecks during peak spikes with millions of submissions.
-    \item Optimized database schema design, integrating \textbf{Hangfire background jobs} and \textbf{Redis caching} for complex statistical reports, maintaining response times \textbf{$<$ 2s}.
-    \item Engineered an \textbf{export streaming module} capable of streaming millions of records to \textbf{CSV} and \textbf{SPSS (.sav)} with a stable memory footprint of only \textbf{$\sim$20MB RAM}, utilizing custom SPSS binary writer and Hangfire background processing.
+    \item Engineered high-throughput survey submission pipelines using \textbf{Redis} to absorb traffic spikes and prevent database bottlenecks across millions of concurrent submissions.
+    \item Optimized relational schema design and integrated \textbf{Hangfire} background jobs with \textbf{Redis} caching for complex statistical reports, keeping API response times \textbf{\textless~2s}.
+    \item Built a memory-efficient \textbf{data export streaming module} capable of exporting millions of rows to \textbf{CSV} and \textbf{SPSS (.sav)} formats with a stable \textbf{\textasciitilde 20MB RAM} footprint via a custom SPSS binary writer and Hangfire workers.
 \end{itemize}
 
-\vspace{0.05cm}
+\vspace{2pt}
 
-% --- Project 2 ---
-\textbf{\textcolor{primary}{National Election Council Portal System}} \hfill \textcolor{textgray}{\textbf{06/2025 -- 03/2026}}\\
-\textit{Role:} Backend Developer, Frontend Developer \hfill \textit{Team size:} 5\\
-\textit{Tech Stack:} .NET 8, ReactJS, Clean Architecture, EF Core, PostgreSQL, MinIO, Hangfire, JWT, Serilog, Redis, IIS, Git
+\entryheading{National Election Council Portal System}{06/2025 -- 03/2026}
+\noindent\textit{Role:} Fullstack Developer (Backend \& Frontend) \textbar\ \textit{Team Size:} 5\par\nopagebreak
+\noindent\textit{Tech Stack:} .NET 8, ASP.NET Core, ReactJS, Clean Architecture, CQRS, EF Core, PostgreSQL, Redis, Hangfire, MinIO, JWT, Serilog, IIS, Git\par\nopagebreak
 \begin{itemize}
-    \item Architected RESTful APIs with \textbf{CQRS pattern} and implemented decoupled business logic following \textbf{Clean Architecture}.
-    \item Optimized cross-system data synchronization: slashed per-record processing time down to \textbf{20ms (80\% reduction)} across \textbf{600,000 records}, with end-to-end transaction logging.
-    \item Accelerated database queries and portal page loading via \textbf{Redis caching}, achieving response times \textbf{$<$ 1.6s}.
-    \item Implemented multi-tier \textbf{JWT Authentication} \& role-based authorization for fine-grained access control.
-    \item Audited and mitigated standard web security vulnerabilities (\textbf{OWASP Top 10}) including SQL Injection, XSS, and CSRF.
-    \item Leveraged AI workflows to automate architecturally compliant CRUD API scaffolding and accelerate Figma-to-ReactJS conversion.
+    \item Architected scalable RESTful APIs using the \textbf{CQRS} pattern and decoupled domain business logic following \textbf{Clean Architecture}.
+    \item Optimized cross-system data synchronization, cutting per-record processing time to \textbf{20ms (80\% reduction)} across \textbf{600,000 records} with full end-to-end transaction logging via \textbf{Serilog}.
+    \item Accelerated database queries and public portal page loads with \textbf{Redis} caching, maintaining response times \textbf{\textless~1.6s}.
+    \item Implemented multi-tier \textbf{JWT Authentication} and Role-Based Access Control (RBAC), and remediated \textbf{OWASP Top 10} web security vulnerabilities including SQL Injection, XSS, and CSRF.
+    \item Streamlined architecturally compliant CRUD API generation and Figma-to-ReactJS UI implementation using structured AI workflows.
 \end{itemize}
 
-\vspace{0.05cm}
+\vspace{2pt}
 
-% --- Project 3 ---
-\textbf{\textcolor{primary}{State Audit Portal \& Media Publishing Platform}} \hfill \textcolor{textgray}{\textbf{07/2025 -- 12/2025}}\\
-\textit{Role:} Backend Developer, Frontend Developer \hfill \textit{Team size:} 5\\
-\textit{Tech Stack:} .NET 8, ReactJS, Clean Architecture, EF Core, MSSQL, MinIO, Hangfire, JWT, Serilog, Redis, IIS, Git
+\entryheading{State Audit Portal \& Media Publishing Platform}{07/2025 -- 12/2025}
+\noindent\textit{Role:} Fullstack Developer (Backend \& Frontend) \textbar\ \textit{Team Size:} 5\par\nopagebreak
+\noindent\textit{Tech Stack:} .NET 8, ASP.NET Core, ReactJS, Clean Architecture, EF Core, MSSQL, Redis, Hangfire, MinIO, SSO, JWT, CKEditor, Serilog, IIS, Git\par\nopagebreak
 \begin{itemize}
-    \item Utilized \textbf{Hangfire} for background job orchestration: automated content publishing, multi-channel alerts, and asynchronous image rendering.
-    \item Optimized news article caching and feed queries using \textbf{Redis}, maintaining response times \textbf{$<$ 1.6s}.
-    \item Integrated \textbf{Single Sign-On (SSO)} and \textbf{JWT Authentication} across the public portal and CMS administrative portal.
-    \item Customized rich-text editing workflows using \textbf{CKEditor}; applied AI tooling to accelerate CMS frontend and backend feature delivery.
+    \item Orchestrated asynchronous background workflows with \textbf{Hangfire} for scheduled article publishing, multi-channel notifications, and image processing.
+    \item Optimized news feed queries and article caching using \textbf{Redis}, sustaining portal response times \textbf{\textless~1.6s}.
+    \item Integrated \textbf{Single Sign-On (SSO)} and \textbf{JWT Authentication} across the public news portal and internal CMS; customized rich-media editorial workflows with \textbf{CKEditor}.
 \end{itemize}
 
 % ==================== TECHNICAL SKILLS ====================
 \section{Technical Skills}
-
 \begin{itemize}
-    \item \textbf{Languages \& Databases:} C\# (.NET 8), TypeScript, JavaScript, Python, PostgreSQL, MSSQL, MariaDB, Redis, CSS, HTML.
-    \item \textbf{Frameworks \& Tools:} ReactJS, ASP.NET Core, EF Core, Clean Architecture, CQRS, MinIO, Elasticsearch, Hangfire, Docker, K8s, Git.
-    \item \textbf{AI Workflows \& Engineering:} Proficient in AI coding tools (Claude, Cursor, ChatGPT, Gemini, Codex); hands-on experience in: \textit{Agent Teams, Rules, Skills, MCP (Model Context Protocol), Meta-prompting}.
-    \item \textbf{Soft Skills:} Team collaboration, independent problem solving, system analysis, high adaptability under pressure.
-    \item \textbf{Foreign Languages:} Professional technical English reading/writing, basic conversational English (\textbf{VNU Test B2} -- 02/2025).
+    \item \textbf{Programming Languages:} C\#, TypeScript, JavaScript, Python, SQL, HTML5, CSS3.
+    \item \textbf{Backend \& Architecture:} .NET 8, ASP.NET Core, RESTful APIs, Entity Framework Core (EF Core), Clean Architecture, CQRS, Hangfire, JWT, SSO, Serilog.
+    \item \textbf{Frontend:} ReactJS, CKEditor, Responsive Web UI.
+    \item \textbf{Databases, Caching \& Storage:} PostgreSQL, Microsoft SQL Server (MSSQL), MariaDB, Redis, Elasticsearch, MinIO.
+    \item \textbf{DevOps \& AI Engineering:} Docker, Kubernetes (K8s), CI/CD, IIS, Git; AI Coding Workflows (Claude, Cursor, ChatGPT, Gemini, Codex, Model Context Protocol / MCP, Agent Rules \& Skills).
+    \item \textbf{Languages:} English -- VNU Test B2 (02/2025; proficient technical reading/writing, conversational communication).
 \end{itemize}
 
-% ==================== EDUCATION & HONORS ====================
-\section{Education \& Honors}
+% ==================== EDUCATION ====================
+\section{Education}
+\noindent{\color{primary}\textbf{VNU University of Science (HUS) -- Vietnam National University, Hanoi}} \textbar\ \textbf{09/2021 -- 07/2025}\par\nopagebreak
+\noindent Bachelor of Science in Computer and Information Science \textbar\ Member of HAMIC Math \& Informatics Club\par
 
-\begin{tabularx}{\textwidth}{@{}X r@{}}
-    \textbf{\textcolor{primary}{VNU University of Science (HUS) -- Vietnam National University, Hanoi}} & \textcolor{textgray}{\textbf{09/2021 -- 07/2025}} \\
-    \textit{Bachelor of Science in Computer and Information Science (Member of Hamic Math \& Informatics Club)} & \\
-    \textbf{Third Prize} -- \textit{Wcontest 2022 (Web for Education)} Programming Contest -- VNU University of Science & \textcolor{textgray}{\textbf{11/2022}} \\
-    \textbf{Consolation Prize} -- \textit{National Student Informatics Olympiad} & \textcolor{textgray}{\textbf{03/2022}}
-\end{tabularx}
+% ==================== HONORS & AWARDS ====================
+\section{Honors \& Awards}
+\begin{itemize}
+    \item \textbf{Third Prize} -- Wcontest 2022 (Web for Education) Programming Contest, VNU University of Science (11/2022)
+    \item \textbf{Consolation Prize} -- National Student Informatics Olympiad / OLP (03/2022)
+\end{itemize}
 
 \end{document}

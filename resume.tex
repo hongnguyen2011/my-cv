@@ -1,164 +1,168 @@
 \documentclass[a4paper,9.5pt]{article}
 
-% --- Packages & Engine Compatibility ---
+% --- Engine & Font Compatibility (ATS-Safe Unicode Mapping & No Ligatures) ---
 \usepackage{iftex}
 
 \ifPDFTeX
+  \input{glyphtounicode}
+  \pdfgentounicode=1
   \usepackage[utf8]{inputenc}
   \usepackage[T5]{fontenc}
   \usepackage[vietnamese,english]{babel}
-  \usepackage{lmodern}
+  \usepackage{tgtermes}
+  \usepackage{microtype}
+  \DisableLigatures{encoding = *, family = *}
 \else
   \usepackage{fontspec}
-  \setmainfont{Times New Roman}[
-    BoldFont = * Bold,
-    ItalicFont = * Italic,
-    BoldItalicFont = * Bold Italic
+  \setmainfont{texgyretermes}[
+    Extension = .otf,
+    UprightFont = *-regular,
+    BoldFont = *-bold,
+    ItalicFont = *-italic,
+    BoldItalicFont = *-bolditalic,
+    Ligatures = {TeX, NoCommon}
   ]
 \fi
 
-\usepackage[left=1.2cm,right=1.2cm,top=0.95cm,bottom=0.95cm]{geometry}
-\usepackage{graphicx}
+% --- Page Geometry & Layout ---
+\usepackage[left=1.15cm,right=1.15cm,top=0.65cm,bottom=0.65cm]{geometry}
+\usepackage[none]{hyphenat}
 \usepackage{xcolor}
-\usepackage{hyperref}
-\usepackage{fontawesome5}
 \usepackage{enumitem}
-\usepackage{tabularx}
 \usepackage{titlesec}
-\usepackage{tikz}
+\usepackage{hyperref}
 
-% --- Color Palette ---
-\definecolor{primary}{HTML}{0F4C81}    % Classic Navy Blue
-\definecolor{secondary}{HTML}{1A73E8}  % Accent Blue
-\definecolor{textdark}{HTML}{1F2937}   % Deep Charcoal
-\definecolor{textgray}{HTML}{4B5563}   % Slate Gray
-\definecolor{linecolor}{HTML}{CBD5E1}  % Light Gray border
+% --- Subtle High-Contrast Palette ---
+\definecolor{primary}{HTML}{0F4C81}
+\definecolor{textdark}{HTML}{111827}
+\definecolor{linecolor}{HTML}{94A3B8}
 
-% --- Hyperlinks Setup ---
 \hypersetup{
     colorlinks=true,
-    linkcolor=secondary,
-    urlcolor=secondary,
+    linkcolor=primary,
+    urlcolor=primary,
     pdfauthor={Nguyen Hong Nguyen},
-    pdftitle={CV - Nguyen Hong Nguyen - Fullstack Developer}
+    pdftitle={Nguyen Hong Nguyen - Fullstack Developer CV},
+    pdfsubject={Fullstack Developer (.NET, ReactJS)},
+    pdfkeywords={Fullstack Developer, C\#, .NET 8, ASP.NET Core, ReactJS, TypeScript, PostgreSQL, MSSQL, MariaDB, Redis, Elasticsearch, Docker, Kubernetes}
 }
 
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
-\setlist[itemize]{leftmargin=1.1em, itemsep=1pt, topsep=1pt, parsep=0pt}
+\setlength{\parskip}{0pt}
+\sloppy
 
-% --- Section Styling ---
-\newcommand{\sectionicon}{\textcolor{primary}{\faChevronCircleRight}\hspace{0.35em}}
+\setlist[itemize]{
+    leftmargin=1.2em,
+    label=\textbullet,
+    itemsep=0.6pt,
+    topsep=1pt,
+    parsep=0pt
+}
 
+% --- ATS-Friendly Section Styling (No Icons, No Negative Overlap) ---
 \titleformat{\section}
   {\color{primary}\normalsize\bfseries}
   {}
   {0em}
-  {\sectionicon\MakeUppercase}[\vspace{-0.6em}\color{linecolor}\rule{\textwidth}{0.8pt}]
+  {\MakeUppercase}[\vspace{1pt}{\color{linecolor}\titlerule[0.6pt]}]
 
-\titlespacing*{\section}{0pt}{6pt}{3pt}
+\titlespacing*{\section}{0pt}{4pt}{2.5pt}
+
+% --- Single-Column Entry Heading Macro ---
+\newcommand{\entryheading}[2]{%
+  \noindent{\color{primary}\textbf{#1}}\hfill\textbf{#2}\par\nopagebreak\vspace{0.5pt}%
+}
 
 \begin{document}
 \ifPDFTeX
   \selectlanguage{vietnamese}
 \fi
+\fontsize{9.4pt}{11.2pt}\selectfont
 \color{textdark}
 
-% ==================== HEADER (INFO + AVATAR) ====================
-\begin{minipage}[c]{0.77\textwidth}
-    {\LARGE \textbf{\textcolor{primary}{NGUYỄN HỒNG NGUYÊN}}}\\[2pt]
-    {\large \textbf{\textcolor{secondary}{Fullstack Developer}}}\\[4pt]
-    
+% ==================== HEADER ====================
+\begin{center}
+    {\LARGE\bfseries\color{primary} NGUYỄN HỒNG NGUYÊN}\\[1pt]
+    {\large\bfseries Fullstack Developer}\\[2pt]
     \small
-    \begin{tabular}{@{}ll@{}}
-        \faIcon{phone} \ \textbf{0962 587 054} & \faIcon{envelope} \ \href{mailto:nguyenhongn2011@gmail.com}{nguyenhongn2011@gmail.com} \\[2pt]
-        \faIcon{linkedin} \ \href{https://www.linkedin.com/in/hnguyen2011/}{linkedin.com/in/hnguyen2011} & \faIcon{github} \ \href{https://github.com/hongnguyen2011}{github.com/hongnguyen2011} \\[2pt]
-        \faIcon{birthday-cake} \ 20/11/2003 & \faIcon{map-marker-alt} \ Đống Đa, Hà Nội
-    \end{tabular}
-\end{minipage}
-\hfill
-\begin{minipage}[c]{0.20\textwidth}
-    \flushright
-    \begin{tikzpicture}
-        \node[inner sep=1pt, draw=linecolor, line width=0.8pt, rounded corners=1.5pt] {
-            \includegraphics[width=2.4cm,height=3.6cm,keepaspectratio]{anh-chan-dung.jpg}
-        };
-    \end{tikzpicture}
-\end{minipage}
+    Đống Đa, Hà Nội \textbar\ 0962 587 054 \textbar\ \href{mailto:nguyenhongn2011@gmail.com}{nguyenhongn2011@gmail.com} \textbar\ \href{https://www.linkedin.com/in/hnguyen2011/}{linkedin.com/in/hnguyen2011} \textbar\ \href{https://github.com/hongnguyen2011}{github.com/hongnguyen2011}
+\end{center}
 
-\vspace{0.1cm}
+\vspace{-6pt}
+
+% ==================== TÓM TẮT CHUYÊN MÔN ====================
+\section{Tóm Tắt Chuyên Môn}
+Lập trình viên Fullstack có kinh nghiệm phát triển các hệ thống cổng thông tin và nền tảng web chịu tải cao với \textbf{C\# (.NET 8 / ASP.NET Core)} và \textbf{ReactJS / TypeScript}. Nắm vững kiến trúc \textbf{Clean Architecture}, \textbf{CQRS}, tối ưu hóa cơ sở dữ liệu (\textbf{PostgreSQL, MSSQL, MariaDB, Redis, Elasticsearch}), xử lý tác vụ nền (\textbf{Hangfire}) và ứng dụng AI nâng cao hiệu suất phát triển phần mềm.
 
 % ==================== KINH NGHIỆM LÀM VIỆC ====================
 \section{Kinh Nghiệm Làm Việc}
 
-\textbf{\textcolor{primary}{Công ty Cổ phần Tin học Tân Dân}} \hfill \textcolor{textgray}{\textbf{07/2024 -- Hiện tại}}\\
-\textit{Fullstack Developer} \hfill \textit{Hà Nội}
+\entryheading{Công ty Cổ phần Tin học Tân Dân}{07/2024 -- Hiện tại}
+\noindent\textit{Fullstack Developer \textbar\ Hà Nội, Việt Nam}\par\nopagebreak
 \begin{itemize}
-    \item Phát triển và bảo trì các API RESTful với \textbf{ASP.NET Core}, giao diện quản trị với \textbf{ReactJS} mang lại hệ thống ổn định và hiệu suất cao.
-    \item Làm việc chuyên sâu với \textbf{PostgreSQL, MSSQL, MariaDB}, tối ưu hóa thiết kế và hiệu suất truy vấn cho toàn hệ thống.
-    \item Khai thác và ứng dụng các công cụ AI (\textbf{Claude, Gemini, ChatGPT, Cursor}) vào quy trình phát triển, nâng cao năng suất công việc và chất lượng source code.
+    \item Phát triển và bảo trì hệ thống RESTful API hiệu năng cao với \textbf{ASP.NET Core} cùng giao diện quản trị web bằng \textbf{ReactJS}, đảm bảo tính ổn định và khả năng chịu tải thực tế.
+    \item Thiết kế và tối ưu hóa cấu trúc cơ sở dữ liệu, truy vấn chuyên sâu trên \textbf{PostgreSQL}, \textbf{Microsoft SQL Server (MSSQL)} và \textbf{MariaDB} cho toàn hệ thống.
+    \item Ứng dụng các công cụ AI (\textbf{Claude, Cursor, Gemini, ChatGPT}) vào quy trình phát triển phần mềm nhằm tăng tốc độ bàn giao tính năng và đảm bảo chất lượng mã nguồn.
 \end{itemize}
 
-% ==================== DỰ ÁN ====================
-\section{Dự Án Nổi Bật}
+% ==================== DỰ ÁN TIÊU BIỂU ====================
+\section{Dự Án Tiêu Biểu}
 
-% --- Dự án 1 ---
-\textbf{\textcolor{primary}{Phần mềm Hệ thống điều tra dư luận xã hội}} \hfill \textcolor{textgray}{\textbf{05/2026 -- Hiện tại}}\\
-\textit{Vị trí:} Backend Developer, Frontend Developer \hfill \textit{Quy mô nhóm:} 5 thành viên\\
-\textit{Công nghệ:} .NET 8, ReactJS, Clean Architecture, EF Core, MariaDB, MinIO, Hangfire, Redis, Elasticsearch, CI/CD, K8s, Git
+\entryheading{Phần mềm Hệ thống điều tra dư luận xã hội}{05/2026 -- Hiện tại}
+\noindent\textit{Vị trí:} Fullstack Developer (Backend \& Frontend) \textbar\ \textit{Quy mô nhóm:} 5 thành viên\par\nopagebreak
+\noindent\textit{Công nghệ:} .NET 8, ASP.NET Core, ReactJS, Clean Architecture, EF Core, MariaDB, Redis, Elasticsearch, Hangfire, MinIO, CI/CD, Kubernetes (K8s), Git\par\nopagebreak
 \begin{itemize}
-    \item Sử dụng \textbf{Redis} tối ưu luồng nộp bài, chống quá tải database khi có hàng triệu người dùng nộp bài đồng thời.
-    \item Tối ưu thiết kế CSDL, kết hợp \textbf{Hangfire background job} và \textbf{Redis caching} tối ưu các request báo cáo thống kê, đảm bảo thời gian tải \textbf{$<$ 2s}.
-    \item Xây dựng module \textbf{export streaming} hàng triệu dòng ra định dạng \textbf{CSV} và \textbf{SPSS (.sav)} với RAM ổn định chỉ \textbf{$\sim$20MB}, custom SPSS binary writer và xử lý nền qua Hangfire.
+    \item Xây dựng luồng tiếp nhận bài khảo sát chịu tải cao với \textbf{Redis}, chống quá tải cơ sở dữ liệu khi có hàng triệu người dùng nộp bài đồng thời.
+    \item Tối ưu thiết kế CSDL, kết hợp \textbf{Hangfire} background job và \textbf{Redis} caching cho các báo cáo thống kê phức tạp, duy trì thời gian phản hồi \textbf{\textless~2s}.
+    \item Phát triển module \textbf{export streaming} kết xuất hàng triệu bản ghi ra định dạng \textbf{CSV} và \textbf{SPSS (.sav)} với mức tiêu thụ bộ nhớ ổn định chỉ \textbf{\textasciitilde 20MB RAM} thông qua custom SPSS binary writer và xử lý nền qua Hangfire.
 \end{itemize}
 
-\vspace{0.08cm}
+\vspace{2pt}
 
-% --- Dự án 2 ---
-\textbf{\textcolor{primary}{Phần mềm Portal Hội đồng bầu cử quốc gia}} \hfill \textcolor{textgray}{\textbf{06/2025 -- 03/2026}}\\
-\textit{Vị trí:} Backend Developer, Frontend Developer \hfill \textit{Quy mô nhóm:} 5 thành viên\\
-\textit{Công nghệ:} .NET 8, ReactJS, Clean Architecture, EF Core, PostgreSQL, MinIO, Hangfire, JWT, Serilog, Redis, IIS, Git
+\entryheading{Phần mềm Portal Hội đồng bầu cử quốc gia}{06/2025 -- 03/2026}
+\noindent\textit{Vị trí:} Fullstack Developer (Backend \& Frontend) \textbar\ \textit{Quy mô nhóm:} 5 thành viên\par\nopagebreak
+\noindent\textit{Công nghệ:} .NET 8, ASP.NET Core, ReactJS, Clean Architecture, CQRS, EF Core, PostgreSQL, Redis, Hangfire, MinIO, JWT, Serilog, IIS, Git\par\nopagebreak
 \begin{itemize}
-    \item Xây dựng API RESTful theo \textbf{CQRS pattern}, triển khai business logic theo kiến trúc \textbf{Clean Architecture}.
-    \item Tối ưu thời gian đồng bộ dữ liệu từ hệ thống khác: giảm thời gian xử lý mỗi bản ghi xuống còn \textbf{20ms (giảm 80\%)} trên tập \textbf{600.000 bản ghi}, tích hợp logging chi tiết kiểm soát từng giao dịch.
-    \item Tối ưu hóa truy vấn CSDL, tăng tốc tải trang portal bằng \textbf{Redis caching} với thời gian tải \textbf{$<$ 1.6s}.
-    \item Thiết kế \& triển khai \textbf{JWT Authentication}, quản lý phiên đăng nhập và phân quyền đa tầng theo nghiệp vụ.
-    \item Rà soát và khắc phục các lỗ hổng bảo mật tiêu chuẩn (\textbf{OWASP Top 10}) như SQL Injection, XSS và CSRF.
-    \item Sử dụng AI để sinh mã CRUD API chuẩn hệ thống và phát triển giao diện CMS theo thiết kế Figma nhanh chóng.
+    \item Thiết kế RESTful API theo mẫu \textbf{CQRS} và tổ chức tầng nghiệp vụ tách biệt theo kiến trúc \textbf{Clean Architecture}.
+    \item Tối ưu luồng đồng bộ dữ liệu liên hệ thống, rút ngắn thời gian xử lý mỗi bản ghi xuống \textbf{20ms (giảm 80\%)} trên tập \textbf{600.000 bản ghi}, kết hợp ghi log chi tiết từng giao dịch với \textbf{Serilog}.
+    \item Tối ưu hóa truy vấn CSDL và tăng tốc tải trang portal bằng \textbf{Redis} caching, đảm bảo thời gian tải \textbf{\textless~1.6s}.
+    \item Triển khai xác thực \textbf{JWT Authentication} và phân quyền đa tầng theo nghiệp vụ (RBAC); rà soát và khắc phục các lỗ hổng bảo mật chuẩn \textbf{OWASP Top 10} (SQL Injection, XSS, CSRF).
+    \item Áp dụng quy trình AI hỗ trợ sinh mã CRUD API chuẩn kiến trúc và chuyển đổi thiết kế Figma sang giao diện ReactJS nhanh chóng.
 \end{itemize}
 
-\vspace{0.08cm}
+\vspace{2pt}
 
-% --- Dự án 3 ---
-\textbf{\textcolor{primary}{Phần mềm Portal Cổng kiểm toán \& Báo kiểm toán}} \hfill \textcolor{textgray}{\textbf{07/2025 -- 12/2025}}\\
-\textit{Vị trí:} Backend Developer, Frontend Developer \hfill \textit{Quy mô nhóm:} 5 thành viên\\
-\textit{Công nghệ:} .NET 8, ReactJS, Clean Architecture, EF Core, MSSQL, MinIO, Hangfire, JWT, Serilog, Redis, IIS, Git
+\entryheading{Phần mềm Portal Cổng kiểm toán \& Báo kiểm toán}{07/2025 -- 12/2025}
+\noindent\textit{Vị trí:} Fullstack Developer (Backend \& Frontend) \textbar\ \textit{Quy mô nhóm:} 5 thành viên\par\nopagebreak
+\noindent\textit{Công nghệ:} .NET 8, ASP.NET Core, ReactJS, Clean Architecture, EF Core, MSSQL, Redis, Hangfire, MinIO, SSO, JWT, CKEditor, Serilog, IIS, Git\par\nopagebreak
 \begin{itemize}
-    \item Ứng dụng \textbf{Hangfire} để xử lý tác vụ nền như đăng bài tự động, đẩy thông báo đa kênh, render hình ảnh.
-    \item Tối ưu truy vấn dữ liệu báo chí với \textbf{Redis}, đảm bảo tốc độ phản hồi trang \textbf{$<$ 1.6s}.
-    \item Tích hợp xác thực \textbf{Single Sign-On (SSO)} và \textbf{JWT Authentication} cho toàn bộ hệ thống portal và quản trị CMS.
-    \item Tùy biến trình soạn thảo đa phương tiện với \textbf{CKEditor}; dùng AI hỗ trợ sinh mã API CRUD và giao diện CMS.
+    \item Ứng dụng \textbf{Hangfire} điều phối các tác vụ nền: hẹn giờ xuất bản bài viết tự động, đẩy thông báo đa kênh và xử lý hình ảnh bất đồng bộ.
+    \item Tối ưu truy vấn dữ liệu tin bài và bộ nhớ đệm với \textbf{Redis}, duy trì tốc độ phản hồi trang \textbf{\textless~1.6s}.
+    \item Tích hợp xác thực tập trung \textbf{Single Sign-On (SSO)} và \textbf{JWT Authentication} cho toàn bộ cổng thông tin và hệ thống CMS; tùy biến trình soạn thảo đa phương tiện với \textbf{CKEditor}.
 \end{itemize}
 
-% ==================== KỸ NĂNG ====================
-\section{Kỹ Năng}
-
+% ==================== KỸ NĂNG CHUYÊN MÔN ====================
+\section{Kỹ Năng Chuyên Môn}
 \begin{itemize}
-    \item \textbf{Lập trình \& Cơ sở dữ liệu:} C\# (.NET 8), TypeScript, JavaScript, Python, PostgreSQL, MSSQL, MariaDB, Redis, CSS, HTML.
-    \item \textbf{Frameworks \& Công cụ:} ReactJS, ASP.NET Core, EF Core, Clean Architecture, CQRS, MinIO, Elasticsearch, Hangfire, Docker, K8s, Git.
-    \item \textbf{Ứng dụng AI:} Khai thác hiệu quả các AI coding tools (Claude, Cursor, ChatGPT, Gemini, Codex); am hiểu và áp dụng kỹ thuật: \textit{Agent Teams, Rules, Skills, MCP (Model Context Protocol), Meta-prompting}.
-    \item \textbf{Kỹ năng mềm:} Làm việc nhóm, làm việc độc lập, tư duy phân tích hệ thống, khả năng chịu áp lực cao.
-    \item \textbf{Ngoại ngữ:} Đọc hiểu tài liệu chuyên ngành tốt, giao tiếp tiếng Anh cơ bản (\textbf{VNU Test B2} -- 02/2025).
+    \item \textbf{Ngôn ngữ lập trình:} C\#, TypeScript, JavaScript, Python, SQL, HTML5, CSS3.
+    \item \textbf{Backend \& Kiến trúc:} .NET 8, ASP.NET Core, RESTful APIs, Entity Framework Core (EF Core), Clean Architecture, CQRS, Hangfire, JWT, SSO, Serilog.
+    \item \textbf{Frontend:} ReactJS, CKEditor, Responsive Web UI.
+    \item \textbf{Cơ sở dữ liệu \& Lưu trữ:} PostgreSQL, Microsoft SQL Server (MSSQL), MariaDB, Redis, Elasticsearch, MinIO.
+    \item \textbf{DevOps \& Ứng dụng AI:} Docker, Kubernetes (K8s), CI/CD, IIS, Git; thành thạo AI Coding Workflows (Claude, Cursor, ChatGPT, Gemini, Codex, Model Context Protocol / MCP, Agent Rules \& Skills).
+    \item \textbf{Ngoại ngữ:} Tiếng Anh -- Chứng chỉ VNU Test B2 (02/2025; đọc hiểu tốt tài liệu kỹ thuật, giao tiếp cơ bản).
 \end{itemize}
 
-% ==================== HỌC VẤN & GIẢI THƯỞNG ====================
-\section{Học Vấn \& Giải Thưởng}
+% ==================== HỌC VẤN ====================
+\section{Học Vấn}
+\noindent{\color{primary}\textbf{Trường Đại học Khoa học Tự nhiên -- Đại học Quốc gia Hà Nội}} \textbar\ \textbf{09/2021 -- 07/2025}\par\nopagebreak
+\noindent Cử nhân ngành Máy tính và Khoa học thông tin \textbar\ Thành viên CLB Toán Tin HAMIC\par
 
-\begin{tabularx}{\textwidth}{@{}X r@{}}
-    \textbf{\textcolor{primary}{Trường Đại học Khoa học Tự nhiên -- ĐHQG Hà Nội}} & \textcolor{textgray}{\textbf{09/2021 -- 07/2025}} \\
-    \textit{Cử nhân ngành Máy tính và Khoa học thông tin (Thành viên CLB Toán Tin Hamic)} & \\
-    \textbf{Giải Ba} -- Cuộc thi lập trình \textit{Wcontest 2022 (Web for Education)} -- Trường ĐHKHTN & \textcolor{textgray}{\textbf{11/2022}} \\
-    \textbf{Giải Khuyến Khích} -- Cuộc thi \textit{Olympic Tin học sinh viên toàn quốc} & \textcolor{textgray}{\textbf{03/2022}}
-\end{tabularx}
+% ==================== GIẢI THƯỞNG ====================
+\section{Giải Thưởng}
+\begin{itemize}
+    \item \textbf{Giải Ba} -- Cuộc thi lập trình Wcontest 2022 (Web for Education), Trường ĐHKHTN -- ĐHQGHN (11/2022)
+    \item \textbf{Giải Khuyến Khích} -- Cuộc thi Olympic Tin học Sinh viên Việt Nam / OLP (03/2022)
+\end{itemize}
 
 \end{document}

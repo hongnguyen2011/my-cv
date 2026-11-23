@@ -35,4 +35,4 @@ pdflatex resume_en.tex
 ```
 
 ### 3. Overleaf
-Upload `resume_en.tex` (or `resume.tex`) and `anh-chan-dung.jpg` to [Overleaf](https://www.overleaf.com/) and click **Recompile**.
+Upload `resume_en.tex` (or `resume.tex`) to [Overleaf](https://www.overleaf.com/) and click **Recompile** (ATS-friendly single-column format, no external image files required).
