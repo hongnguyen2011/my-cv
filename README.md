@@ -14,6 +14,11 @@ LaTeX source code for Nguyen Hong Nguyen's Resume / CV (Fullstack Developer).
 - Output PDF: [`resume.pdf`](resume.pdf)
 - Preview: [`resume_preview.png`](resume_preview.png)
 
+### 3. Remote macOS / iOS & AI Workflow Version (Mercor / Apple Ecosystem)
+- Source: [`resume_macos_ios.tex`](resume_macos_ios.tex)
+- Output PDF (Standard Recruitment Name): [`Nguyen_Hong_Nguyen_Resume.pdf`](Nguyen_Hong_Nguyen_Resume.pdf) (also [`resume_macos_ios.pdf`](resume_macos_ios.pdf))
+- Preview: [`resume_macos_ios_preview.png`](resume_macos_ios_preview.png)
+
 ---
 
 ## 🛠 Compilation Instructions

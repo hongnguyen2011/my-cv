@@ -1,0 +1,160 @@
+\documentclass[a4paper,10pt]{article}
+
+% --- Engine & Font Compatibility (ATS-Safe Unicode Mapping & No Ligatures) ---
+\usepackage{iftex}
+
+\ifPDFTeX
+  \input{glyphtounicode}
+  \pdfgentounicode=1
+  \usepackage[utf8]{inputenc}
+  \usepackage[T1]{fontenc}
+  \usepackage{tgtermes}
+  \usepackage{microtype}
+  \DisableLigatures{encoding = *, family = *}
+\else
+  \usepackage{fontspec}
+  \setmainfont{texgyretermes}[
+    Extension = .otf,
+    UprightFont = *-regular,
+    BoldFont = *-bold,
+    ItalicFont = *-italic,
+    BoldItalicFont = *-bolditalic,
+    Ligatures = {TeX, NoCommon}
+  ]
+\fi
+
+% --- Page Geometry & Layout ---
+\usepackage[left=1.1cm,right=1.1cm,top=0.55cm,bottom=0.55cm]{geometry}
+\usepackage[none]{hyphenat}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+
+% --- Subtle High-Contrast Palette ---
+\definecolor{primary}{HTML}{0F4C81}
+\definecolor{textdark}{HTML}{111827}
+\definecolor{linecolor}{HTML}{94A3B8}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    urlcolor=primary,
+    pdfauthor={Nguyen Hong Nguyen},
+    pdftitle={Nguyen Hong Nguyen - Fullstack Developer Resume},
+    pdfsubject={Fullstack Developer (.NET, ReactJS, macOS, iOS)},
+    pdfkeywords={Fullstack Developer, C\#, .NET 8, ASP.NET Core, ReactJS, TypeScript, JavaScript, Python, PostgreSQL, MSSQL, MariaDB, Redis, macOS 26.6.2, MacBook Pro M1 32GB RAM 1TB SSD, AOC U27G4 4K 3840x2160, iPhone 15 Pro Max, iOS, Excel on macOS, VS Code, Cursor}
+}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\sloppy
+
+\setlist[itemize]{
+    leftmargin=1.15em,
+    label=\textbullet,
+    itemsep=0.2pt,
+    topsep=0.5pt,
+    parsep=0pt
+}
+
+% --- ATS-Friendly Section Styling (No Icons, No Negative Overlap) ---
+\titleformat{\section}
+  {\color{primary}\fontsize{9.5pt}{11pt}\selectfont\bfseries}
+  {}
+  {0em}
+  {\MakeUppercase}[\vspace{0.8pt}{\color{linecolor}\titlerule[0.6pt]}]
+
+\titlespacing*{\section}{0pt}{2.8pt}{1.5pt}
+
+% --- Single-Column Entry Heading Macro ---
+\newcommand{\entryheading}[2]{%
+  \noindent{\color{primary}\textbf{#1}}\hfill\textbf{#2}\par\nopagebreak\vspace{0.3pt}%
+}
+
+\begin{document}
+\fontsize{8.9pt}{10.4pt}\selectfont
+\color{textdark}
+
+% ==================== HEADER ====================
+\begin{center}
+    {\fontsize{15pt}{17pt}\selectfont\bfseries\color{primary} NGUYEN HONG NGUYEN}\\[1pt]
+    {\fontsize{10.5pt}{12pt}\selectfont\bfseries Fullstack Developer}\\[1.5pt]
+    {\fontsize{8.5pt}{10pt}\selectfont
+    Hanoi, Vietnam \textbar\ (+84) 962 587 054 \textbar\ \href{mailto:nguyenhongn2011@gmail.com}{nguyenhongn2011@gmail.com} \textbar\ \href{https://www.linkedin.com/in/hnguyen2011/}{linkedin.com/in/hnguyen2011} \textbar\ \href{https://github.com/hongnguyen2011}{github.com/hongnguyen2011}}
+\end{center}
+
+\vspace{-7pt}
+
+% ==================== PROFESSIONAL SUMMARY ====================
+\section{Professional Summary}
+Fullstack Developer experienced in building high-concurrency enterprise and government web platforms using \textbf{C\# (.NET 8 / ASP.NET Core)}, \textbf{ReactJS / TypeScript}, \textbf{Python}, and relational/NoSQL databases (\textbf{PostgreSQL, MSSQL, MariaDB, Redis, Elasticsearch}). Daily \textbf{macOS} and \textbf{iOS} user on a \textbf{MacBook Pro M1 (32GB RAM, 1TB SSD, macOS 26.6.2)} with an external \textbf{AOC U27G4 4K Monitor (3840x2160, \textgreater 2.5MP)} and \textbf{iPhone 15 Pro Max}, proficient in \textbf{VS Code, Cursor, Terminal, Microsoft Excel on macOS, Docker, and Git}.
+
+% ==================== HARDWARE, DISPLAY & MACOS / IOS ENVIRONMENT ====================
+\section{Hardware, Display \& macOS / iOS Environment}
+\begin{itemize}
+    \item \textbf{Mac Workstation:} \textbf{MacBook Pro (Apple M1 Silicon, 32GB RAM, 1TB SSD)} running \textbf{macOS 26.6.2}.
+    \item \textbf{Display Setup (\textgreater 2.5 Megapixels Compliant):} External \textbf{AOC U27G4 27-inch 4K UHD Monitor (3840x2160, 16:9, 8.29 MP)} paired with MacBook Pro Retina Built-in Display (supports both Option A single 4K \textgreater 2.5MP monitor and Option B dual-monitor setup).
+    \item \textbf{Mobile Device \& macOS Applications:} \textbf{iPhone 15 Pro Max (iOS)}; \textbf{Microsoft Excel on macOS}, Visual Studio Code (VS Code), Cursor, Terminal (\texttt{zsh}/\texttt{bash}), Docker, Git.
+\end{itemize}
+
+% ==================== WORK EXPERIENCE ====================
+\section{Work Experience}
+
+\entryheading{Tan Dan Informatics Joint Stock Company}{07/2024 -- Present}
+\noindent\textit{Fullstack Developer \textbar\ Hanoi, Vietnam}\par\nopagebreak
+\begin{itemize}
+    \item Developed and maintained high-performance RESTful APIs with \textbf{ASP.NET Core} and administrative web portals with \textbf{ReactJS}, ensuring system stability and high availability across production environments.
+    \item Designed and optimized multi-database schemas and queries across \textbf{PostgreSQL}, \textbf{Microsoft SQL Server (MSSQL)}, and \textbf{MariaDB}, improving query throughput and data reliability.
+    \item Applied AI-assisted development workflows (\textbf{Claude, Cursor, Gemini, ChatGPT}) on \textbf{macOS} to accelerate feature delivery, automate boilerplate scaffolding, and uphold clean code standards.
+\end{itemize}
+
+% ==================== PROJECTS ====================
+\section{Projects}
+
+\entryheading{Public Opinion Polling \& Social Survey System}{05/2026 -- Present}
+\noindent\textit{Role:} Fullstack Developer (Backend \& Frontend) \textbar\ \textit{Team Size:} 5 \textbar\ \textit{Tech Stack:} .NET 8, ASP.NET Core, ReactJS, Clean Architecture, EF Core, MariaDB, Redis, Elasticsearch, Hangfire, CI/CD, K8s, Git\par\nopagebreak
+\begin{itemize}
+    \item Engineered high-throughput survey submission pipelines using \textbf{Redis} to absorb traffic spikes and prevent database bottlenecks across millions of concurrent submissions.
+    \item Optimized relational schema design and integrated \textbf{Hangfire} background jobs with \textbf{Redis} caching for complex statistical reports, keeping API response times \textbf{\textless~2s}.
+    \item Built a memory-efficient \textbf{data export streaming module} capable of exporting millions of rows to \textbf{CSV (Excel-compatible)} and \textbf{SPSS (.sav)} formats with a stable \textbf{\textasciitilde 20MB RAM} footprint via a custom SPSS binary writer and Hangfire workers.
+\end{itemize}
+
+\vspace{1pt}
+
+\entryheading{National Election Council Portal System}{06/2025 -- 03/2026}
+\noindent\textit{Role:} Fullstack Developer (Backend \& Frontend) \textbar\ \textit{Team Size:} 5 \textbar\ \textit{Tech Stack:} .NET 8, ASP.NET Core, ReactJS, Clean Architecture, CQRS, EF Core, PostgreSQL, Redis, Hangfire, JWT, Serilog, Git\par\nopagebreak
+\begin{itemize}
+    \item Architected scalable RESTful APIs using the \textbf{CQRS} pattern and decoupled domain business logic following \textbf{Clean Architecture}.
+    \item Optimized cross-system data synchronization, cutting per-record processing time to \textbf{20ms (80\% reduction)} across \textbf{600,000 records} with full end-to-end transaction logging via \textbf{Serilog}.
+    \item Accelerated database queries and public portal page loads with \textbf{Redis} caching (\textbf{\textless~1.6s}); implemented multi-tier \textbf{JWT Authentication}, RBAC, and \textbf{OWASP Top 10} security mitigations (SQL Injection, XSS, CSRF).
+\end{itemize}
+
+\vspace{1pt}
+
+\entryheading{State Audit Portal \& Media Publishing Platform}{07/2025 -- 12/2025}
+\noindent\textit{Role:} Fullstack Developer (Backend \& Frontend) \textbar\ \textit{Team Size:} 5 \textbar\ \textit{Tech Stack:} .NET 8, ASP.NET Core, ReactJS, Clean Architecture, EF Core, MSSQL, Redis, Hangfire, SSO, JWT, CKEditor, Git\par\nopagebreak
+\begin{itemize}
+    \item Orchestrated asynchronous background workflows with \textbf{Hangfire} for scheduled article publishing, multi-channel notifications, and image processing; maintained \textbf{\textless~1.6s} feed response times with \textbf{Redis}.
+    \item Integrated \textbf{Single Sign-On (SSO)} and \textbf{JWT Authentication} across the public portal and internal CMS; customized rich-text workflows with \textbf{CKEditor} and used AI tooling to accelerate frontend and backend delivery.
+\end{itemize}
+
+% ==================== TECHNICAL SKILLS ====================
+\section{Technical Skills}
+\begin{itemize}
+    \item \textbf{Languages \& Databases:} C\# (.NET 8), TypeScript, JavaScript, Python, SQL, PostgreSQL, MSSQL, MariaDB, Redis, Elasticsearch, HTML/CSS.
+    \item \textbf{Frameworks, Tools \& macOS Apps:} ReactJS, ASP.NET Core, Entity Framework Core (EF Core), Clean Architecture, CQRS, Hangfire, Docker, Kubernetes (K8s), Git, VS Code, Cursor, Terminal (\texttt{zsh}), Microsoft Excel on macOS.
+    \item \textbf{AI Workflows \& Engineering:} Proficient in AI coding tools (Claude, Cursor, ChatGPT, Gemini, Codex); hands-on experience in: \textit{Agent Teams, Rules, Skills, MCP (Model Context Protocol), Meta-prompting}.
+    \item \textbf{Languages:} English -- VNU Test B2 (02/2025; proficient technical reading/writing, conversational communication).
+\end{itemize}
+
+% ==================== EDUCATION & HONORS ====================
+\section{Education \& Honors}
+\noindent{\color{primary}\textbf{Vietnam National University, Hanoi}} -- \textit{Bachelor of Science in Computer and Information Science (Member of HAMIC Club)} \textbar\ \textbf{09/2021 -- 07/2025}\par\nopagebreak
+\begin{itemize}
+    \item \textbf{Third Prize} -- Wcontest 2022 (Web for Education) Programming Contest, VNU University of Science (11/2022)
+    \item \textbf{Consolation Prize} -- National Student Informatics Olympiad / OLP (03/2022)
+\end{itemize}
+
+\end{document}
